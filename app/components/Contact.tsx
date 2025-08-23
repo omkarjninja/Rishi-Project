@@ -1,26 +1,43 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Send, ArrowRight, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, ArrowRight, Facebook, Twitter, Instagram, Linkedin, Youtube, CheckCircle, AlertCircle } from 'lucide-react';
+import { submitContactForm, subscribeToNewsletter } from '../lib/firebase-utils';
 
 const Contact = () => {
+  const [contactForm, setContactForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
+  const [contactMessage, setContactMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [newsletterMessage, setNewsletterMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
   const contactInfo = [
     {
       icon: Phone,
       title: 'Phone',
-      details: ['+91 98765 43210', '+91 98765 43211'],
+      details: ['+91 93224 39730'],
       color: 'from-green-400 to-green-500'
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@droneindia.com', 'support@droneindia.com'],
+      details: ['thedroneindia2025@gmail.com'],
       color: 'from-blue-400 to-blue-500'
     },
     {
       icon: MapPin,
       title: 'Office',
-      details: ['123 Tech Park, Bangalore', 'Karnataka, India - 560001'],
+      details: ['Solapur', 'Maharashtra, India - 413005'],
       color: 'from-purple-400 to-purple-500'
     },
     {
@@ -32,8 +49,8 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    // { icon: Facebook, href: '#', label: 'Facebook' },
+    // { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
     { icon: Youtube, href: '#', label: 'YouTube' }
@@ -47,6 +64,63 @@ const Contact = () => {
     { name: 'Gallery', href: '#gallery' },
     { name: 'About Us', href: '#about' }
   ];
+
+  const handleContactFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setContactForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleContactFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmittingContact(true);
+    setContactMessage(null);
+
+    try {
+      const result = await submitContactForm(contactForm);
+      if (result.success) {
+        setContactMessage({ type: 'success', text: 'Message sent successfully! We\'ll get back to you soon.' });
+        setContactForm({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        setContactMessage({ type: 'error', text: 'Failed to send message. Please try again.' });
+      }
+    } catch (error) {
+      setContactMessage({ type: 'error', text: 'An error occurred. Please try again.' });
+    } finally {
+      setIsSubmittingContact(false);
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+
+    setIsSubmittingNewsletter(true);
+    setNewsletterMessage(null);
+
+    try {
+      const result = await subscribeToNewsletter(newsletterEmail);
+      if (result.success) {
+        setNewsletterMessage({ type: 'success', text: 'Successfully subscribed to newsletter!' });
+        setNewsletterEmail('');
+      } else {
+        setNewsletterMessage({ type: 'error', text: 'Failed to subscribe. Please try again.' });
+      }
+    } catch (error) {
+      setNewsletterMessage({ type: 'error', text: 'An error occurred. Please try again.' });
+    } finally {
+      setIsSubmittingNewsletter(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-gray-900 text-white">
@@ -63,7 +137,7 @@ const Contact = () => {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ready to start your aerial journey? Contact us for consultations, bookings, and custom solutions.
+            Ready to Take off? Contact us for consultations, bookings, and custom solutions.
           </p>
         </motion.div>
 
@@ -92,7 +166,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form and Map */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16" id='contact-form'>
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -102,44 +176,87 @@ const Contact = () => {
             className="bg-gray-800 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
-            <form className="space-y-6">
+            
+            {/* Success/Error Message */}
+            {contactMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-6 p-4 rounded-lg flex items-center space-x-3 ${
+                  contactMessage.type === 'success' 
+                    ? 'bg-green-600/20 border border-green-500/30 text-green-400' 
+                    : 'bg-red-600/20 border border-red-500/30 text-red-400'
+                }`}
+              >
+                {contactMessage.type === 'success' ? (
+                  <CheckCircle className="w-5 h-5 text-green-400" />
+                ) : (
+                  <AlertCircle className="w-5 h-5 text-red-400" />
+                )}
+                <span>{contactMessage.text}</span>
+              </motion.div>
+            )}
+
+            <form onSubmit={handleContactFormSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">First Name *</label>
                   <input
                     type="text"
+                    name="firstName"
+                    value={contactForm.firstName}
+                    onChange={handleContactFormChange}
+                    required
                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors"
                     placeholder="Your first name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Last Name *</label>
                   <input
                     type="text"
+                    name="lastName"
+                    value={contactForm.lastName}
+                    onChange={handleContactFormChange}
+                    required
                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors"
                     placeholder="Your last name"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Email *</label>
                 <input
                   type="email"
+                  name="email"
+                  value={contactForm.email}
+                  onChange={handleContactFormChange}
+                  required
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors"
                   placeholder="your.email@example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Phone *</label>
                 <input
                   type="tel"
+                  name="phone"
+                  value={contactForm.phone}
+                  onChange={handleContactFormChange}
+                  required
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors"
                   placeholder="+91 98765 43210"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Service Required</label>
-                <select className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-yellow-400 transition-colors">
+                <label className="block text-sm font-medium text-gray-300 mb-2">Service Required *</label>
+                <select 
+                  name="service"
+                  value={contactForm.service}
+                  onChange={handleContactFormChange}
+                  required
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-yellow-400 transition-colors"
+                >
                   <option value="">Select a service</option>
                   <option value="aerial-shoot">Aerial Shoot</option>
                   <option value="workshop">Workshop</option>
@@ -148,20 +265,39 @@ const Contact = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Message *</label>
                 <textarea
+                  name="message"
+                  value={contactForm.message}
+                  onChange={handleContactFormChange}
+                  required
                   rows={4}
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors resize-none"
                   placeholder="Tell us about your project..."
                 ></textarea>
               </div>
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full bg-gradient-to-r from-yellow-400 to-teal-400 text-black py-4 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                type="submit"
+                disabled={isSubmittingContact}
+                whileHover={{ scale: isSubmittingContact ? 1 : 1.05 }}
+                whileTap={{ scale: isSubmittingContact ? 1 : 0.95 }}
+                className={`w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
+                  isSubmittingContact 
+                    ? 'bg-gray-600 text-gray-300 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-yellow-400 to-teal-400 text-black hover:shadow-lg'
+                }`}
               >
-                <Send className="w-5 h-5" />
-                <span>Send Message</span>
+                {isSubmittingContact ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    <span>Send Message</span>
+                  </>
+                )}
               </motion.button>
             </form>
           </motion.div>
@@ -186,8 +322,8 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium">THE DRONE INDIA Headquarters</p>
-                  <p className="text-gray-300 text-sm">123 Tech Park, Electronic City</p>
-                  <p className="text-gray-300 text-sm">Bangalore, Karnataka - 560001</p>
+                  <p className="text-gray-300 text-sm">Solapur </p>
+                  <p className="text-gray-300 text-sm">Maharashtra India - 413005</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
@@ -253,27 +389,61 @@ const Contact = () => {
               <p className="text-gray-300 text-sm mb-4">
                 Stay updated with our latest projects and offers.
               </p>
-              <div className="flex">
+
+              {/* Newsletter Success/Error Message */}
+              {newsletterMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mb-4 p-3 rounded-lg flex items-center space-x-2 text-sm ${
+                    newsletterMessage.type === 'success' 
+                      ? 'bg-green-600/20 border border-green-500/30 text-green-400' 
+                      : 'bg-red-600/20 border border-red-500/30 text-red-400'
+                  }`}
+                >
+                  {newsletterMessage.type === 'success' ? (
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                  ) : (
+                    <AlertCircle className="w-4 h-4 text-red-400" />
+                  )}
+                  <span>{newsletterMessage.text}</span>
+                </motion.div>
+              )}
+
+              <form onSubmit={handleNewsletterSubmit} className="flex">
                 <input
                   type="email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="Your email"
+                  required
                   className="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors"
                 />
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-gradient-to-r from-yellow-400 to-teal-400 text-black rounded-r-lg hover:shadow-lg transition-all duration-300"
+                  type="submit"
+                  disabled={isSubmittingNewsletter}
+                  whileHover={{ scale: isSubmittingNewsletter ? 1 : 1.05 }}
+                  whileTap={{ scale: isSubmittingNewsletter ? 1 : 0.95 }}
+                  className={`px-4 py-2 rounded-r-lg transition-all duration-300 ${
+                    isSubmittingNewsletter 
+                      ? 'bg-gray-600 text-gray-300 cursor-not-allowed' 
+                      : 'bg-gradient-to-r from-yellow-400 to-teal-400 text-black hover:shadow-lg'
+                  }`}
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  {isSubmittingNewsletter ? (
+                    <div className="w-4 h-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <ArrowRight className="w-4 h-4" />
+                  )}
                 </motion.button>
-              </div>
+              </form>
             </div>
           </div>
 
           {/* Bottom Footer */}
           <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 THE DRONE INDIA. All rights reserved.
+              © 2025 THE DRONE INDIA. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-yellow-400 text-sm transition-colors">Privacy Policy</a>

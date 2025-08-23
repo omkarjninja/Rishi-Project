@@ -27,15 +27,15 @@ const AboutUs = () => {
 
   const certifications = [
     'DGCA Certified Operator',
-    'ISO 9001:2015 Certified',
+    // 'ISO 9001:2015 Certified',
     'Safety Management System',
-    'Professional Liability Insurance'
+    // 'Professional Liability Insurance'
   ];
 
   const stats = [
-    { number: '5+', label: 'Years Experience' },
-    { number: '500+', label: 'Successful Projects' },
-    { number: '50+', label: 'Team Members' },
+    { number: '3+', label: 'Years Experience' },
+    { number: '200+', label: 'Successful Projects' },
+    { number: '5+', label: 'Team Members' },
     { number: '100%', label: 'Client Satisfaction' }
   ];
 
@@ -179,7 +179,7 @@ const AboutUs = () => {
         </div>
 
         {/* Client Logos */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -195,7 +195,7 @@ const AboutUs = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

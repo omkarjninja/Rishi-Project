@@ -58,34 +58,36 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
+              onClick={() => {
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               <Camera size={20} />
-              <a href="#aerial-shoots" style={{ scrollBehavior: "smooth" }}> <span>Book a Shoot</span></a>
-             
+              <span>Book a Shoot</span>
             </motion.button>
             
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center space-x-2"
+              onClick={() => {
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               <Users size={20} />
-              <a href="#workshops" style={{ scrollBehavior: "smooth" }}>
-  <span>Explore Workshops</span>
-</a>
-
+              <span>Book Shoot</span>
             </motion.button>
             
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-teal-400 to-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
+              onClick={() => {
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               <Settings size={20} />
-              <a href="#custom-builds" style={{ scrollBehavior: "smooth" }}>
-  <span>Request a Custom Build</span>
-</a>
-
+              <span>Request Quote</span>
             </motion.button>
           </motion.div>
 

@@ -9,7 +9,7 @@ const AerialShoots = () => {
       title: 'Property & Industrial Shoots',
       description: 'High-precision aerial photography and videography for real estate, commercial properties, machinery, infrastructure, solar farms, and civil structures.',
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80',
-      features: ['4K Quality', 'Quick Turnaround', 'Virtual Tours', 'Professional Editing'],
+      features: ['4K Quality', 'Quick Turnaround', 'Professional Editing'],
       price: 'Starting from ₹3,000',
       icon: Camera,
       color: 'from-yellow-400 to-yellow-500',
@@ -127,6 +127,9 @@ const AerialShoots = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={`w-full bg-gradient-to-r ${category.color} text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2`}
+                    onClick={() => {
+                      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >
                     <span>Book a Shoot</span>
                     <ArrowRight className="w-4 h-4" />
@@ -138,7 +141,7 @@ const AerialShoots = () => {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -152,7 +155,7 @@ const AerialShoots = () => {
           >
             View Complete Portfolio
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

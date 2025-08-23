@@ -67,6 +67,9 @@ const Navigation = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-yellow-400 to-teal-400 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-shadow duration-200"
+              onClick={() => {
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Book Now
             </motion.button>
@@ -109,6 +112,10 @@ const Navigation = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full bg-gradient-to-r from-yellow-400 to-teal-400 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg transition-shadow duration-200"
+                  onClick={() => {
+                    setIsOpen(false);
+                    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   Book Now
                 </motion.button>

@@ -41,23 +41,38 @@ const CustomBuilds = () => {
     {
       title: 'Application-Based Drones',
       subtitle: 'Specialized Solutions',
-      description: 'Custom UAVs for agriculture, surveying, inspection, security, or delivery applications.',
+      description: 'Custom UAVs for Multiple applications.',
       image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       applications: [
         {
-          name: 'Agriculture',
-          description: 'Crop monitoring, spraying, and precision farming',
-          icon: '🌾'
+          name: 'Monitoring',
+          description: 'Surveillance and observation systems',
+          icon: '👁️'
         },
         {
-          name: 'Inspection',
-          description: 'Infrastructure, power lines, and industrial sites',
-          icon: '🔍'
+          name: 'Mapping',
+          description: 'Aerial surveying and cartography',
+          icon: '🗺️'
         },
+        // {
+        //   name: 'Delivery',
+        //   description: 'Transport and logistics solutions',
+        //   icon: '📦'
+        // },
+        // {
+        //   name: 'Research',
+        //   description: 'Scientific data collection',
+        //   icon: '🔬'
+        // },
+        // {
+        //   name: 'Emergency',
+        //   description: 'Search and rescue operations',
+        //   icon: '🚨'
+        // },
         {
-          name: 'Security',
-          description: 'Surveillance and monitoring systems',
-          icon: '🛡️'
+          name: 'Entertainment',
+          description: 'Event and performance Shoots',
+          icon: '🎪'
         }
       ],
       features: [
@@ -94,7 +109,7 @@ const CustomBuilds = () => {
         }
       ],
       features: [
-        '8K Camera Systems',
+        '4K Camera Systems',
         'Gimbal Stabilization',
         'Cinematic Flight Modes',
         'Professional Audio Integration',
@@ -191,6 +206,9 @@ const CustomBuilds = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`bg-gradient-to-r ${solution.color} text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center space-x-2`}
+                  onClick={() => {
+                    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   <span>Request a Quote</span>
                   <ArrowRight className="w-4 h-4" />
@@ -214,8 +232,8 @@ const CustomBuilds = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Camera className="w-8 h-8 text-white" />
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Cinema Production</h4>
-              <p className="text-gray-600 text-sm mb-3">Custom 8K cinema drone for Bollywood production</p>
+              <h4 className="font-semibold text-gray-900 mb-2">Public Shoots</h4>
+              <p className="text-gray-600 text-sm mb-3">Custom 4K cinema drone for production</p>
               <div className="flex justify-center space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
@@ -226,8 +244,8 @@ const CustomBuilds = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-teal-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Wrench className="w-8 h-8 text-white" />
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Agricultural Survey</h4>
-              <p className="text-gray-600 text-sm mb-3">Precision farming drone for 1000-acre farm</p>
+              <h4 className="font-semibold text-gray-900 mb-2">Total Flight Time</h4>
+              <p className="text-gray-600 text-sm mb-3">1000+ total flying hours</p>
               <div className="flex justify-center space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />

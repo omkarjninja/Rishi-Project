@@ -9,15 +9,16 @@ const Workshops = () => {
       title: 'Drone Basics',
       subtitle: 'Beginner Level',
       description: 'Hands-on introduction to drones, perfect for enthusiasts & students.',
-      duration: '2 Days',
+      duration: '1 Day',
       participants: 'Max 8 Students',
       price: '₹5,000',
-      originalPrice: '₹15,000',
+      originalPrice: '₹10,000',
       features: [
+        'Underswtanding the drone and its types',
         'Understanding drone components & working principles',
         'Safety guidelines & DGCA regulations overview',
         'Basic simulator training & flight practice',
-        'Battery management & maintenance essentials'
+        // 'Battery management & maintenance essentials'
       ],
       icon: BookOpen,
       color: 'from-blue-400 to-blue-500',
@@ -26,17 +27,18 @@ const Workshops = () => {
     {
       title: 'Drone Basics: Quadcopter',
       subtitle: 'Specialized Workshop',
-      description: 'Specialized workshop focusing on quadcopter design & flying.',
-      duration: '3 Days',
+      description: 'Specialized workshop focusing on quadcopter development.',
+      duration: '2 Days',
       participants: 'Max 6 Students',
       price: '₹15,000',
       originalPrice: '₹22,000',
       features: [
-        'Frame design, assembly & wiring',
-        'Motor, ESC & propeller selection & integration',
+        'Underswtanding the drone and its components',
+        'Safety guidelines & DGCA regulations overview',
+        'Basic simulator training & flight practice',
         'Flight controller setup & parameter tuning',
-        'Pre-flight checks & troubleshooting',
-        'Hands-on flying & maneuvering practice'
+        // 'Pre-flight checks & troubleshooting',
+        // 'Hands-on flying & maneuvering practice'
       ],
       icon: Wrench,
       color: 'from-green-400 to-green-500',
@@ -51,11 +53,13 @@ const Workshops = () => {
       price: '₹15,000',
       originalPrice: '₹32,000',
       features: [
+        'Underswtanding the drone and its components',
+        'Safety guidelines & DGCA regulations overview',
         'Aerodynamics & airframe design fundamentals',
-        'Assembly & electronics integration',
-        'Flight stabilization & autopilot setup',
-        'Launching & landing techniques',
-        'Mission planning for aerial survey & endurance flights'
+        'Develpoping air craft & electronics integration',
+        // 'Flight stabilization & autopilot setup',
+        // 'Launching & landing techniques',
+        // 'Mission planning for aerial survey & endurance flights'
       ],
       icon: Wrench,
       color: 'from-purple-400 to-purple-500',
@@ -78,7 +82,7 @@ const Workshops = () => {
             Drone <span className="gradient-text">Workshops</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Hands-on training programs designed to make you a confident drone pilot and builder
+            Hands-on training programs designed to make you a confident drone pilot and proffesional
           </p>
         </motion.div>
 
@@ -137,7 +141,7 @@ const Workshops = () => {
                     <span className="text-3xl font-bold text-gray-900">{workshop.price}</span>
                     <span className="text-lg text-gray-400 line-through">{workshop.originalPrice}</span>
                   </div>
-                  <p className="text-sm text-gray-500">One-time payment, includes all materials</p>
+                  <p className="text-sm text-gray-500">One-time payment, Additional cost for kits</p>
                 </div>
 
                 {/* Features */}
@@ -160,8 +164,10 @@ const Workshops = () => {
                     whileTap={{ scale: 0.95 }}
                     className={`w-full bg-gradient-to-r ${workshop.color} text-white py-4 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2`}
                   >
-                    <span>Enroll Now</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTut1XYPGE3TEwtomEYF9llieqMPX_W2TncoPWVFqsRrAzug/viewform" target="_blank" rel="noopener noreferrer" className='flex items-center justify-center space-x-2'>
+                    <span className='text-white'>Enroll Now</span>
                     <ArrowRight className="w-4 h-4" />
+                    </a>
                   </motion.button>
                 </div>
               </div>

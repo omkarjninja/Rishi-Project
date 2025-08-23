@@ -14,70 +14,70 @@ const Gallery = () => {
       src: '/videos/1.mp4',
       title: 'Aerial Cinematic Shot',
       category: 'Cinematic',
-      thumbnail: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      thumbnail: '/images/4.jpeg'
     },
     {
       src: '/videos/2.mp4',
-      title: 'Property Showcase',
-      category: 'Real Estate',
-      thumbnail: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80'
+      title: 'Nature Drone',
+      category: 'Nature',
+      thumbnail: '/images/7.jpeg'
     },
     {
       src: '/videos/3.mp4',
-      title: 'Event Coverage',
-      category: 'Events',
-      thumbnail: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'
+      title: 'Custom Drone Shot',
+      category: 'Custom',
+      thumbnail: '/images/9.png'
     },
     {
       src: '/videos/4.mp4',
-      title: 'Wedding Aerial',
-      category: 'Weddings',
-      thumbnail: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      title: 'Monument Aerial',
+      category: 'Monuments',
+      thumbnail: '/images/8.png'
     },
     {
       src: '/videos/5.mp4',
-      title: 'Industrial Inspection',
-      category: 'Industrial',
-      thumbnail: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      title: 'Agricultural drone',
+      category: 'Custom',
+      thumbnail: '/images/5.jpeg'
     },
     {
       src: '/videos/6.mp4',
-      title: 'Agricultural Drone',
-      category: 'Agriculture',
-      thumbnail: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      title: 'Beach Drone Shot',
+      category: 'Beach',
+      thumbnail: '/images/10.png'
     }
   ];
 
   const galleryImages = [
     {
-      src: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Aerial view of cityscape',
-      category: 'Property'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80',
-      alt: 'Luxury property aerial',
-      category: 'Property'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
-      alt: 'Festival aerial coverage',
-      category: 'Events'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Wedding aerial shot',
-      category: 'Events'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Industrial inspection',
+      src: '/images/1.jpeg',
+      alt: 'Aerial view of Drone',
       category: 'Custom'
     },
     {
-      src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: '/images/2.jpeg',
+      alt: 'Luxury aerial',
+      category: 'Property'
+    },
+    {
+      src: '/images/3.jpeg',
+      alt: 'Festival aerial coverage',
+      category: 'Custom'
+    },
+    {
+      src: '/images/4.jpeg',
+      alt: 'Aerial shot',
+      category: 'Events'
+    },
+    {
+      src: '/images/5.jpeg',
       alt: 'Agricultural drone',
       category: 'Custom'
+    },
+    {
+      src: '/images/6.jpeg',
+      alt: 'Festival aerial coverage',
+      category: 'Events'
     }
   ];
 
