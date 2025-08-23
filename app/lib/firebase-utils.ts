@@ -19,7 +19,8 @@ export const submitContactForm = async (formData: {
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error submitting contact form:', error);
-    return { success: false, error: error.message };
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    return { success: false, error: errorMessage };
   }
 };
 
@@ -34,6 +35,7 @@ export const subscribeToNewsletter = async (email: string) => {
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error subscribing to newsletter:', error);
-    return { success: false, error: error.message };
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    return { success: false, error: errorMessage };
   }
 };
