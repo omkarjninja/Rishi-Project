@@ -29,10 +29,10 @@ const Gallery = () => {
       thumbnail: '/images/9.png'
     },
     {
-      src: '/videos/4.mp4',
-      title: 'Monument Aerial',
-      category: 'Monuments',
-      thumbnail: '/images/8.png'
+      src: '/videos/11.mp4',
+      title: 'Property Shoot',
+      category: 'Property',
+      thumbnail: '/images/11.png'
     },
     {
       src: '/videos/5.mp4',
