@@ -51,9 +51,9 @@ const Contact = () => {
   const socialLinks = [
     // { icon: Facebook, href: '#', label: 'Facebook' },
     // { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
+    { icon: Instagram, href: 'https://www.instagram.com/thedroneindia?utm_source=qr&igsh=MTVqa2FnYnlhcjJsbw%3D%3D', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/rishikesh-marathe/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn' },
+    // { icon: Youtube, href: '#', label: 'YouTube' }
   ];
 
   const quickLinks = [
